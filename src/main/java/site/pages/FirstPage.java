@@ -1,11 +1,16 @@
 package site.pages;
 
-import com.epam.jdi.light.elements.composite.WebPage;
-import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
-import com.epam.jdi.light.ui.html.elements.common.Button;
+import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Selenide.$;
 
 // This is an example of Page Object definition. To be removed
-public class FirstPage extends WebPage {
-    @UI("//button")
-    public static Button testButton;
+public class FirstPage extends BasePage {
+    private static final String PATH = "/";
+    private static final String TITLE = "/";
+    public static SelenideElement testButton = $("button");
+
+    public FirstPage() {
+        super(TITLE, PATH);
+    }
 }
