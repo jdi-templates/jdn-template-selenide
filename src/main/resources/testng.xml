@@ -10,8 +10,6 @@
 
     </test>
     <listeners>
-        <!--        <listener class-name="testng.TestNGListener" />-->
-        <!--        <listener class-name="testng.RetryListenerClass"/>-->
-        <!--        <listener class-name="io.qameta.allure.testng.AllureTestNg" />-->
+        <listener class-name="testng.RetryListenerClass" />
     </listeners>
 </suite>
