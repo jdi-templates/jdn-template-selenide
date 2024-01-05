@@ -14,8 +14,6 @@
         <aspectj.version>1.9.7</aspectj.version>
         <domain>https://jdi-testing.github.io/jdi-light/</domain>
         <testng.version>7.8.0</testng.version>
-<!--        <allure.testng>2.23.0</allure.testng>-->
-<!--        <allure.maven>2.12.0</allure.maven>-->
         <jetty.version>9.4.12.RC2</jetty.version>
         <driver.remote.url />
         <log.level>INFO</log.level>
@@ -32,20 +30,14 @@
                 <aspectj.args>--add-opens java.base/java.lang=ALL-UNNAMED</aspectj.args>
             </properties>
         </profile>
-
-        <profile>
-            <id>ci</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <driver.remote.url>http://localhost:4444/wd/hub</driver.remote.url>
-                <log.level>INFO</log.level>
-            </properties>
-        </profile>
     </profiles>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-configuration2</artifactId>
+            <version>2.7</version>
+        </dependency>
         <!-- Log4j2 Dependency -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -59,23 +51,6 @@
             <version>7.0.4</version>
             <scope>compile</scope>
         </dependency>
-        <!--Allure-->
-<!--        <dependency>-->
-<!--            <groupId>io.qameta.allure</groupId>-->
-<!--            <artifactId>allure-testng</artifactId>-->
-<!--            <version>${allure.testng}</version>-->
-<!--            <scope>test</scope>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.testng</groupId>-->
-<!--                    <artifactId>testng</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>io.qameta.allure</groupId>-->
-<!--                    <artifactId>allure-java-commons</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -99,8 +74,12 @@
             <version>7.8.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.13.6</version>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -117,16 +96,19 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
-<!--                    <systemPropertyVariables>-->
-<!--                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>-->
-<!--                    </systemPropertyVariables>-->
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/general.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         ${aspectj.args}
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.testng.AllureTestNg</value>
+                        </property>
+                    </properties>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -136,25 +118,15 @@
                     </dependency>
                 </dependencies>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>io.qameta.allure</groupId>-->
-<!--                <artifactId>allure-maven</artifactId>-->
-<!--                <version>${allure.maven}</version>-->
-<!--                <configuration>-->
-<!--                    <reportVersion>2.10.0</reportVersion>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
         </plugins>
-
         <resources>
             <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
+                <directory>src/test/resources</directory>
             </resource>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>src/test/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
     </build>
-
 </project>

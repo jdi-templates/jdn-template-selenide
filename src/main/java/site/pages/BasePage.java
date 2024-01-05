@@ -1,10 +1,6 @@
 package site.pages;
 
 import com.codeborne.selenide.Selenide;
-
-// This is an example of Page Object definition.
-// ADD PAGES CLASS WITH URLS AS PATH
-
 public abstract class BasePage {
 
 
