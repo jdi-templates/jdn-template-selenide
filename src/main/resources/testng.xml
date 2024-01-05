@@ -11,5 +11,6 @@
     </test>
     <listeners>
         <listener class-name="testng.RetryListenerClass" />
+        <listener class-name="testng.RetryFailedTestCases" />
     </listeners>
 </suite>

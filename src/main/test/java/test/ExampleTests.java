@@ -1,13 +1,14 @@
 package test;
 
 import org.testng.annotations.Test;
-import site.pages.FirstPage;
+import site.pages.HomePage;
 
 public class ExampleTests implements BaseTest {
-    FirstPage firstPage = new FirstPage();
+    HomePage homePage = new HomePage();
 
     @Test
     public void openPageTest() {
-        firstPage.openPage();
+        homePage.openPage();
+        homePage.moreInformationLink.click();
     }
 }
