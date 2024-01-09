@@ -73,6 +73,7 @@
             <version>${allure.version}</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
