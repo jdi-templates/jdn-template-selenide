@@ -1,4 +1,4 @@
-# Selenium Testng empty template
+# Selenide Testng empty template
 
 Empty template for Test Automation project with Selenide
 
