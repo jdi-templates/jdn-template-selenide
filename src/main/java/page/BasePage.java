@@ -1,4 +1,4 @@
-package site.pages;
+package page;
 
 import com.codeborne.selenide.Selenide;
 public abstract class BasePage {

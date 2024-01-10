@@ -1,7 +1,7 @@
 package test;
 
 import org.testng.annotations.Test;
-import site.pages.HomePage;
+import page.HomePage;
 
 public class ExampleTests implements BaseTest {
     HomePage homePage = new HomePage();
