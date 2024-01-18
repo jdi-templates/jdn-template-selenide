@@ -19,6 +19,10 @@
         <allure.maven.version>2.12.0</allure.maven.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+        <!--        app parameters-->
+        <base.url>https://example.com</base.url>
+        <headless>true</headless>
+        <browser>chrome</browser>
     </properties>
 
     <dependencies>
