@@ -1,8 +1,8 @@
 package pages;
 
 import com.codeborne.selenide.Selenide;
-public abstract class BasePage {
 
+public abstract class BasePage {
 
     protected String path;
     protected String title;

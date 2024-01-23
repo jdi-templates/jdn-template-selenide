@@ -32,6 +32,7 @@ public interface BaseTest {
     }
 
     @AfterSuite
+
     public static void tearDown() {
         SelenideLogger.removeListener("AllureSelenide");
         Selenide.closeWebDriver();
